@@ -26,7 +26,8 @@ export default {
 				foreground: 'hsl(var(--foreground))',
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))'
+					foreground: 'hsl(var(--primary-foreground))',
+					hover: 'hsl(var(--primary-hover))'
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
@@ -51,6 +52,21 @@ export default {
 				card: {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
+				},
+				chat: {
+					sidebar: 'hsl(var(--chat-sidebar))',
+					'sidebar-active': 'hsl(var(--chat-sidebar-active))',
+					'bubble-agent': 'hsl(var(--chat-bubble-agent))',
+					'bubble-customer': 'hsl(var(--chat-bubble-customer))',
+					online: 'hsl(var(--chat-online))',
+					away: 'hsl(var(--chat-away))',
+					offline: 'hsl(var(--chat-offline))'
+				},
+				status: {
+					online: 'hsl(var(--status-online))',
+					away: 'hsl(var(--status-away))',
+					busy: 'hsl(var(--status-busy))',
+					offline: 'hsl(var(--status-offline))'
 				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',

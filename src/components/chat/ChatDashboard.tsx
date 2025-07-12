@@ -6,14 +6,11 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
 import { 
-  Settings, 
-  Bell, 
   User, 
   LogOut,
   MessageCircle,
   Users,
-  Clock,
-  CheckCircle
+  Clock
 } from 'lucide-react';
 import { Conversation, Message } from '@/types/chat';
 import { mockConversations } from '@/data/mockData';
@@ -21,7 +18,7 @@ import { mockConversations } from '@/data/mockData';
 export function ChatDashboard() {
   const [conversations, setConversations] = useState<Conversation[]>(mockConversations);
   const [selectedConversationId, setSelectedConversationId] = useState<string>();
-  const [agentStatus, setAgentStatus] = useState<'online' | 'away' | 'busy'>('online');
+  const [agentStatus, setAgentStatus] = useState<'online' | 'offline'>('online');
   const { toast } = useToast();
 
   const selectedConversation = conversations.find(conv => conv.id === selectedConversationId);
@@ -187,8 +184,7 @@ export function ChatDashboard() {
   const getStatusColor = (status: string) => {
     const colors = {
       online: 'bg-status-online',
-      away: 'bg-status-away',
-      busy: 'bg-status-busy'
+      offline: 'bg-status-offline'
     };
     return colors[status as keyof typeof colors] || 'bg-status-offline';
   };
@@ -230,17 +226,10 @@ export function ChatDashboard() {
               className="text-sm bg-transparent border border-border rounded px-2 py-1 capitalize"
             >
               <option value="online">Online</option>
-              <option value="away">Away</option>
-              <option value="busy">Busy</option>
+              <option value="offline">Offline</option>
             </select>
           </div>
 
-          <Button variant="ghost" size="sm">
-            <Bell className="w-4 h-4" />
-          </Button>
-          <Button variant="ghost" size="sm">
-            <Settings className="w-4 h-4" />
-          </Button>
           <Button variant="ghost" size="sm">
             <User className="w-4 h-4" />
           </Button>

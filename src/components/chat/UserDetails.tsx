@@ -44,8 +44,6 @@ export function UserDetails({ contact, conversation, onClose }: UserDetailsProps
   const getStatusColor = (status: string) => {
     const colors = {
       online: 'text-status-online',
-      away: 'text-status-away',
-      busy: 'text-status-busy',
       offline: 'text-status-offline'
     };
     return colors[status as keyof typeof colors] || 'text-status-offline';
@@ -54,8 +52,6 @@ export function UserDetails({ contact, conversation, onClose }: UserDetailsProps
   const getStatusBg = (status: string) => {
     const colors = {
       online: 'bg-status-online',
-      away: 'bg-status-away',
-      busy: 'bg-status-busy',
       offline: 'bg-status-offline'
     };
     return colors[status as keyof typeof colors] || 'bg-status-offline';
@@ -131,9 +127,6 @@ export function UserDetails({ contact, conversation, onClose }: UserDetailsProps
             </Button>
             <Button variant="outline" size="sm">
               <Edit className="w-4 h-4" />
-            </Button>
-            <Button variant="outline" size="sm">
-              <Star className="w-4 h-4" />
             </Button>
           </div>
 
@@ -254,7 +247,7 @@ export function UserDetails({ contact, conversation, onClose }: UserDetailsProps
                 </div>
                 
                 <div className="flex items-start gap-3 p-2 bg-muted/30 rounded-lg">
-                  <div className="w-2 h-2 bg-status-away rounded-full mt-2" />
+                  <div className="w-2 h-2 bg-status-online rounded-full mt-2" />
                   <div className="flex-1">
                     <p className="text-xs font-medium">Status changed to {contact.status}</p>
                     <p className="text-xs text-muted-foreground">

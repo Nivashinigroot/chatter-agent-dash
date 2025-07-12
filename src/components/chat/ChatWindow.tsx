@@ -137,8 +137,6 @@ export function ChatWindow({ conversation, onSendMessage, onClose }: ChatWindowP
               <div className={cn(
                 "absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full border-2 border-background",
                 conversation.contact.status === 'online' && 'bg-status-online',
-                conversation.contact.status === 'away' && 'bg-status-away',
-                conversation.contact.status === 'busy' && 'bg-status-busy',
                 conversation.contact.status === 'offline' && 'bg-status-offline'
               )} />
             </div>

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Input } from '@/components/ui/input';
-import { Search, Clock, MessageCircle, Star } from 'lucide-react';
+import { Search, Clock, MessageCircle } from 'lucide-react';
 import { Conversation } from '@/types/chat';
 import { cn } from '@/lib/utils';
 
@@ -48,22 +48,11 @@ export function ConversationList({
   const getStatusDot = (status: string) => {
     const colors = {
       online: 'bg-status-online',
-      away: 'bg-status-away',
-      busy: 'bg-status-busy',
       offline: 'bg-status-offline'
     };
     return colors[status as keyof typeof colors] || 'bg-status-offline';
   };
 
-  const getPriorityColor = (priority: string) => {
-    const colors = {
-      urgent: 'text-red-500 border-red-200',
-      high: 'text-orange-500 border-orange-200',
-      normal: 'text-blue-500 border-blue-200',
-      low: 'text-gray-500 border-gray-200'
-    };
-    return colors[priority as keyof typeof colors] || 'text-gray-500 border-gray-200';
-  };
 
   const ConversationItem = ({ conversation }: { conversation: Conversation }) => (
     <div
@@ -98,25 +87,14 @@ export function ConversationList({
             <h4 className="font-medium text-foreground truncate">
               {conversation.contact.name}
             </h4>
-            <div className="flex items-center gap-1">
-              {conversation.priority !== 'normal' && (
-                <Star className={cn("w-3 h-3", getPriorityColor(conversation.priority))} />
-              )}
-              <span className="text-xs text-muted-foreground">
-                {formatTime(conversation.updatedAt)}
-              </span>
-            </div>
+            <span className="text-xs text-muted-foreground">
+              {formatTime(conversation.updatedAt)}
+            </span>
           </div>
           
-          <p className="text-sm text-muted-foreground truncate mb-2">
+          <p className="text-sm text-muted-foreground truncate">
             {conversation.lastMessage?.content || 'No messages yet'}
           </p>
-          
-          {conversation.unreadCount > 0 && (
-            <Badge variant="default" className="h-5 text-xs px-2">
-              {conversation.unreadCount}
-            </Badge>
-          )}
         </div>
       </div>
     </div>

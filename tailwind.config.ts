@@ -64,8 +64,6 @@ export default {
 				},
 				status: {
 					online: 'hsl(var(--status-online))',
-					away: 'hsl(var(--status-away))',
-					busy: 'hsl(var(--status-busy))',
 					offline: 'hsl(var(--status-offline))'
 				},
 				sidebar: {

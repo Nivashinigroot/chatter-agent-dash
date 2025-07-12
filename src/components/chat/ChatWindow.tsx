@@ -149,24 +149,13 @@ export function ChatWindow({ conversation, onSendMessage }: ChatWindowProps) {
             <div>
               <div className="flex items-center gap-2">
                 <h3 className="font-semibold">{conversation.contact.name}</h3>
-                {conversation.isLive && (
-                  <Badge variant="default" className="text-xs bg-status-online">
-                    Live
-                  </Badge>
-                )}
                 <Badge 
-                  variant="outline" 
-                  className={cn("text-xs", getPriorityBadge(conversation.priority))}
+                  variant={conversation.isLive ? "default" : "secondary"} 
+                  className="text-xs"
                 >
-                  {conversation.priority}
+                  {conversation.isLive ? "LIVE" : "Past"}
                 </Badge>
               </div>
-              <p className="text-sm text-muted-foreground">
-                {conversation.contact.status === 'online' ? 'Online' : 
-                 conversation.contact.lastSeen ? 
-                 `Last seen ${conversation.contact.lastSeen.toLocaleString()}` : 
-                 'Offline'}
-              </p>
             </div>
           </div>
           

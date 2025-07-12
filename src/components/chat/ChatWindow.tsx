@@ -158,24 +158,6 @@ export function ChatWindow({ conversation, onSendMessage }: ChatWindowProps) {
               </div>
             </div>
           </div>
-          
-          <div className="flex items-center gap-2">
-            <Button variant="ghost" size="sm">
-              <Phone className="w-4 h-4" />
-            </Button>
-            <Button variant="ghost" size="sm">
-              <Video className="w-4 h-4" />
-            </Button>
-            <Button variant="ghost" size="sm">
-              <Star className="w-4 h-4" />
-            </Button>
-            <Button variant="ghost" size="sm">
-              <Archive className="w-4 h-4" />
-            </Button>
-            <Button variant="ghost" size="sm">
-              <MoreVertical className="w-4 h-4" />
-            </Button>
-          </div>
         </div>
       </div>
 

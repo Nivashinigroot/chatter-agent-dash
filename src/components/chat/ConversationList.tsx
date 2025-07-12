@@ -112,27 +112,11 @@ export function ConversationList({
             {conversation.lastMessage?.content || 'No messages yet'}
           </p>
           
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              {conversation.unreadCount > 0 && (
-                <Badge variant="default" className="h-5 text-xs px-2">
-                  {conversation.unreadCount}
-                </Badge>
-              )}
-              {conversation.tags?.map(tag => (
-                <Badge key={tag} variant="outline" className="text-xs">
-                  {tag}
-                </Badge>
-              ))}
-            </div>
-            
-            <div className="flex items-center gap-1">
-              <MessageCircle className="w-3 h-3 text-muted-foreground" />
-              <span className="text-xs text-muted-foreground">
-                {conversation.messages.length}
-              </span>
-            </div>
-          </div>
+          {conversation.unreadCount > 0 && (
+            <Badge variant="default" className="h-5 text-xs px-2">
+              {conversation.unreadCount}
+            </Badge>
+          )}
         </div>
       </div>
     </div>

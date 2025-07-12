@@ -15,7 +15,8 @@ import {
   Clock,
   MessageSquare,
   TrendingUp,
-  Activity
+  Activity,
+  X
 } from 'lucide-react';
 import { Contact, Conversation } from '@/types/chat';
 import { cn } from '@/lib/utils';
@@ -23,9 +24,10 @@ import { cn } from '@/lib/utils';
 interface UserDetailsProps {
   contact?: Contact;
   conversation?: Conversation;
+  onClose?: () => void;
 }
 
-export function UserDetails({ contact, conversation }: UserDetailsProps) {
+export function UserDetails({ contact, conversation, onClose }: UserDetailsProps) {
   if (!contact) {
     return (
       <div className="w-80 border-l border-border bg-background flex items-center justify-center p-8">
@@ -82,6 +84,14 @@ export function UserDetails({ contact, conversation }: UserDetailsProps) {
     <div className="w-80 border-l border-border bg-background">
       <ScrollArea className="h-full">
         <div className="p-6">
+          {/* Close Button */}
+          {onClose && (
+            <div className="flex justify-end mb-4">
+              <Button variant="ghost" size="sm" onClick={onClose}>
+                <X className="w-4 h-4" />
+              </Button>
+            </div>
+          )}
           {/* Contact Header */}
           <div className="text-center mb-6">
             <div className="relative inline-block mb-4">

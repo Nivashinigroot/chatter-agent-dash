@@ -261,11 +261,13 @@ export function ChatDashboard() {
         <ChatWindow
           conversation={selectedConversation}
           onSendMessage={handleSendMessage}
+          onClose={() => setSelectedConversationId(undefined)}
         />
         
         <UserDetails
           contact={selectedConversation?.contact}
           conversation={selectedConversation}
+          onClose={() => setSelectedConversationId(undefined)}
         />
       </div>
     </div>

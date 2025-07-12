@@ -8,13 +8,9 @@ import {
   Send, 
   Paperclip, 
   Smile, 
-  MoreVertical, 
-  Phone, 
-  Video,
-  Archive,
-  Star,
   Clock,
-  CheckCheck
+  CheckCheck,
+  X
 } from 'lucide-react';
 import { Conversation, Message } from '@/types/chat';
 import { cn } from '@/lib/utils';
@@ -22,9 +18,10 @@ import { cn } from '@/lib/utils';
 interface ChatWindowProps {
   conversation?: Conversation;
   onSendMessage: (content: string) => void;
+  onClose?: () => void;
 }
 
-export function ChatWindow({ conversation, onSendMessage }: ChatWindowProps) {
+export function ChatWindow({ conversation, onSendMessage, onClose }: ChatWindowProps) {
   const [message, setMessage] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
@@ -158,6 +155,12 @@ export function ChatWindow({ conversation, onSendMessage }: ChatWindowProps) {
               </div>
             </div>
           </div>
+          
+          {onClose && (
+            <Button variant="ghost" size="sm" onClick={onClose}>
+              <X className="w-4 h-4" />
+            </Button>
+          )}
         </div>
       </div>
 

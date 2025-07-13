@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { ConversationList } from './ConversationList';
 import { ChatWindow } from './ChatWindow';
 import { UserDetails } from './UserDetails';
+import { ProfileSheet } from './ProfileSheet';
+import { AIBotSheet } from './AIBotSheet';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
@@ -10,7 +12,8 @@ import {
   LogOut,
   MessageCircle,
   Users,
-  Clock
+  Clock,
+  Bot
 } from 'lucide-react';
 import { Conversation, Message } from '@/types/chat';
 import { mockConversations } from '@/data/mockData';
@@ -19,6 +22,8 @@ export function ChatDashboard() {
   const [conversations, setConversations] = useState<Conversation[]>(mockConversations);
   const [selectedConversationId, setSelectedConversationId] = useState<string>();
   const [agentStatus, setAgentStatus] = useState<'online' | 'offline'>('online');
+  const [showProfileSheet, setShowProfileSheet] = useState(false);
+  const [showAIBotSheet, setShowAIBotSheet] = useState(false);
   const { toast } = useToast();
 
   const selectedConversation = conversations.find(conv => conv.id === selectedConversationId);
@@ -230,7 +235,10 @@ export function ChatDashboard() {
             </select>
           </div>
 
-          <Button variant="ghost" size="sm">
+          <Button variant="ghost" size="sm" onClick={() => setShowAIBotSheet(true)}>
+            <Bot className="w-4 h-4" />
+          </Button>
+          <Button variant="ghost" size="sm" onClick={() => setShowProfileSheet(true)}>
             <User className="w-4 h-4" />
           </Button>
           <Button variant="ghost" size="sm">
@@ -259,6 +267,16 @@ export function ChatDashboard() {
           onClose={() => setSelectedConversationId(undefined)}
         />
       </div>
+      
+      <ProfileSheet 
+        open={showProfileSheet} 
+        onOpenChange={setShowProfileSheet} 
+      />
+      
+      <AIBotSheet 
+        open={showAIBotSheet} 
+        onOpenChange={setShowAIBotSheet} 
+      />
     </div>
   );
 }

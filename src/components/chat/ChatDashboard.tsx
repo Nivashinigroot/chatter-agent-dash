@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { ConversationList } from './ConversationList';
 import { ChatWindow } from './ChatWindow';
 import { UserDetails } from './UserDetails';
-import { ProfileDialog } from './ProfileDialog';
-import { AIBotDialog } from './AIBotDialog';
+import { ProfilePanel } from './ProfilePanel';
+import { AISupportPanel } from './AISupportPanel';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
@@ -22,8 +22,8 @@ export function ChatDashboard() {
   const [conversations, setConversations] = useState<Conversation[]>(mockConversations);
   const [selectedConversationId, setSelectedConversationId] = useState<string>();
   const [agentStatus, setAgentStatus] = useState<'online' | 'offline'>('online');
-  const [showProfileSheet, setShowProfileSheet] = useState(false);
-  const [showAIBotSheet, setShowAIBotSheet] = useState(false);
+  const [showProfilePanel, setShowProfilePanel] = useState(false);
+  const [showAISupportPanel, setShowAISupportPanel] = useState(false);
   const { toast } = useToast();
 
   const selectedConversation = conversations.find(conv => conv.id === selectedConversationId);
@@ -236,10 +236,10 @@ export function ChatDashboard() {
           </div>
 
         <div className="flex items-center gap-2">
-          <Button variant="ghost" size="sm" onClick={() => setShowAIBotSheet(true)} className="h-9 w-9">
+          <Button variant="ghost" size="sm" onClick={() => setShowAISupportPanel(true)} className="h-9 w-9">
             <Headphones className="w-5 h-5" />
           </Button>
-          <Button variant="ghost" size="sm" onClick={() => setShowProfileSheet(true)} className="h-9 w-9">
+          <Button variant="ghost" size="sm" onClick={() => setShowProfilePanel(true)} className="h-9 w-9">
             <UserCircle className="w-5 h-5" />
           </Button>
           <Button variant="ghost" size="sm" className="h-9 w-9">
@@ -263,22 +263,22 @@ export function ChatDashboard() {
           onClose={() => setSelectedConversationId(undefined)}
         />
         
-        <UserDetails
-          contact={selectedConversation?.contact}
-          conversation={selectedConversation}
-          onClose={() => setSelectedConversationId(undefined)}
-        />
+        {!showProfilePanel && !showAISupportPanel && (
+          <UserDetails
+            contact={selectedConversation?.contact}
+            conversation={selectedConversation}
+            onClose={() => setSelectedConversationId(undefined)}
+          />
+        )}
+        
+        {showProfilePanel && (
+          <ProfilePanel onClose={() => setShowProfilePanel(false)} />
+        )}
+        
+        {showAISupportPanel && (
+          <AISupportPanel onClose={() => setShowAISupportPanel(false)} />
+        )}
       </div>
-      
-      <ProfileDialog 
-        open={showProfileSheet} 
-        onOpenChange={setShowProfileSheet} 
-      />
-      
-      <AIBotDialog 
-        open={showAIBotSheet} 
-        onOpenChange={setShowAIBotSheet} 
-      />
     </div>
   );
 }

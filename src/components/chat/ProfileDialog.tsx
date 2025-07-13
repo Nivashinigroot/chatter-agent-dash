@@ -1,22 +1,22 @@
-import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Mail, Phone, Clock, MapPin } from 'lucide-react';
 
-interface ProfileSheetProps {
+interface ProfileDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }
 
-export function ProfileSheet({ open, onOpenChange }: ProfileSheetProps) {
+export function ProfileDialog({ open, onOpenChange }: ProfileDialogProps) {
   return (
-    <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetContent side="bottom" className="h-[500px]">
-        <SheetHeader>
-          <SheetTitle>Agent Profile</SheetTitle>
-        </SheetHeader>
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="max-w-md max-h-[80vh] overflow-y-auto">
+        <DialogHeader>
+          <DialogTitle>My Profile</DialogTitle>
+        </DialogHeader>
         
-        <div className="flex flex-col items-center space-y-6 py-6">
+        <div className="flex flex-col items-center space-y-6 py-4">
           <Avatar className="w-20 h-20">
             <AvatarFallback className="text-2xl bg-primary text-primary-foreground">
               JD
@@ -71,7 +71,7 @@ export function ProfileSheet({ open, onOpenChange }: ProfileSheetProps) {
             </div>
           </div>
         </div>
-      </SheetContent>
-    </Sheet>
+      </DialogContent>
+    </Dialog>
   );
 }

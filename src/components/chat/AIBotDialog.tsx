@@ -1,4 +1,4 @@
-import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -6,7 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Bot, Search, MessageCircle } from 'lucide-react';
 import { useState } from 'react';
 
-interface AIBotSheetProps {
+interface AIBotDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }
@@ -44,7 +44,7 @@ const helpQuestions = [
   }
 ];
 
-export function AIBotSheet({ open, onOpenChange }: AIBotSheetProps) {
+export function AIBotDialog({ open, onOpenChange }: AIBotDialogProps) {
   const [searchQuery, setSearchQuery] = useState('');
 
   const filteredQuestions = helpQuestions.filter(q =>
@@ -54,14 +54,14 @@ export function AIBotSheet({ open, onOpenChange }: AIBotSheetProps) {
   );
 
   return (
-    <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetContent side="bottom" className="h-[600px]">
-        <SheetHeader>
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="max-w-2xl max-h-[80vh] overflow-hidden flex flex-col">
+        <DialogHeader>
           <div className="flex items-center gap-2">
             <Bot className="w-6 h-6 text-primary" />
-            <SheetTitle>AWS AI Assistant</SheetTitle>
+            <DialogTitle>AWS AI Assistant</DialogTitle>
           </div>
-        </SheetHeader>
+        </DialogHeader>
         
         <div className="space-y-4 py-4">
           <div className="relative">
@@ -74,7 +74,7 @@ export function AIBotSheet({ open, onOpenChange }: AIBotSheetProps) {
             />
           </div>
           
-          <div className="space-y-3 max-h-[450px] overflow-y-auto">
+          <div className="space-y-3 overflow-y-auto flex-1 pr-2">
             {filteredQuestions.map((item) => (
               <Card key={item.id} className="hover:bg-muted/50 transition-colors">
                 <CardContent className="p-4">
@@ -105,7 +105,7 @@ export function AIBotSheet({ open, onOpenChange }: AIBotSheetProps) {
             )}
           </div>
         </div>
-      </SheetContent>
-    </Sheet>
+      </DialogContent>
+    </Dialog>
   );
 }

@@ -2,18 +2,18 @@ import { useState, useEffect } from 'react';
 import { ConversationList } from './ConversationList';
 import { ChatWindow } from './ChatWindow';
 import { UserDetails } from './UserDetails';
-import { ProfileSheet } from './ProfileSheet';
-import { AIBotSheet } from './AIBotSheet';
+import { ProfileDialog } from './ProfileDialog';
+import { AIBotDialog } from './AIBotDialog';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
 import { 
-  User, 
+  UserCircle, 
   LogOut,
   MessageCircle,
   Users,
   Clock,
-  Bot
+  Headphones
 } from 'lucide-react';
 import { Conversation, Message } from '@/types/chat';
 import { mockConversations } from '@/data/mockData';
@@ -235,15 +235,17 @@ export function ChatDashboard() {
             </select>
           </div>
 
-          <Button variant="ghost" size="sm" onClick={() => setShowAIBotSheet(true)}>
-            <Bot className="w-4 h-4" />
+        <div className="flex items-center gap-2">
+          <Button variant="ghost" size="sm" onClick={() => setShowAIBotSheet(true)} className="h-9 w-9">
+            <Headphones className="w-5 h-5" />
           </Button>
-          <Button variant="ghost" size="sm" onClick={() => setShowProfileSheet(true)}>
-            <User className="w-4 h-4" />
+          <Button variant="ghost" size="sm" onClick={() => setShowProfileSheet(true)} className="h-9 w-9">
+            <UserCircle className="w-5 h-5" />
           </Button>
-          <Button variant="ghost" size="sm">
-            <LogOut className="w-4 h-4" />
+          <Button variant="ghost" size="sm" className="h-9 w-9">
+            <LogOut className="w-5 h-5" />
           </Button>
+        </div>
         </div>
       </div>
 
@@ -268,12 +270,12 @@ export function ChatDashboard() {
         />
       </div>
       
-      <ProfileSheet 
+      <ProfileDialog 
         open={showProfileSheet} 
         onOpenChange={setShowProfileSheet} 
       />
       
-      <AIBotSheet 
+      <AIBotDialog 
         open={showAIBotSheet} 
         onOpenChange={setShowAIBotSheet} 
       />
